@@ -1,6 +1,7 @@
 const DEFAULT_ROUTE = '/'
 const UNLOCK_ROUTE = '/unlock'
 const LOCK_ROUTE = '/lock'
+const AUTH_ROUTE = '/meshin-auth'
 const SETTINGS_ROUTE = '/settings'
 const GENERAL_ROUTE = '/settings/general'
 const CONNECTIONS_ROUTE = '/settings/connections'
@@ -56,6 +57,7 @@ export {
   DEFAULT_ROUTE,
   UNLOCK_ROUTE,
   LOCK_ROUTE,
+  AUTH_ROUTE,
   SETTINGS_ROUTE,
   REVEAL_SEED_ROUTE,
   MOBILE_SYNC_ROUTE,

@@ -30,6 +30,7 @@ import Settings from '../settings'
 import Authenticated from '../../helpers/higher-order-components/authenticated'
 import Initialized from '../../helpers/higher-order-components/initialized'
 import Lock from '../lock'
+import MeshinAuth from '../meshin-auth'
 import PermissionsConnect from '../permissions-connect'
 import ConnectedSites from '../connected-sites'
 import RestoreVaultPage from '../keychains/restore-vault'
@@ -63,6 +64,7 @@ import {
   DEFAULT_ROUTE,
   LOCK_ROUTE,
   UNLOCK_ROUTE,
+  AUTH_ROUTE,
   SETTINGS_ROUTE,
   REVEAL_SEED_ROUTE,
   MOBILE_SYNC_ROUTE,
@@ -114,6 +116,7 @@ class Routes extends Component {
     const routes = (
       <Switch>
         <Route path={LOCK_ROUTE} component={Lock} exact />
+        <Route path={AUTH_ROUTE} component={MeshinAuth} exact />
         <Route path={INITIALIZE_ROUTE} component={FirstTimeFlow} />
         <Initialized path={UNLOCK_ROUTE} component={UnlockPage} exact />
         <Initialized path={RESTORE_VAULT_ROUTE} component={RestoreVaultPage} exact />
