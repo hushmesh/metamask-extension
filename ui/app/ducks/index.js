@@ -5,6 +5,7 @@ import sendReducer from './send/send.duck'
 import appStateReducer from './app/app'
 import confirmTransactionReducer from './confirm-transaction/confirm-transaction.duck'
 import gasReducer from './gas/gas.duck'
+import meshReducer from './mesh/mesh'
 
 export default combineReducers({
   activeTab: (s) => (s === undefined ? null : s),
@@ -14,4 +15,5 @@ export default combineReducers({
   confirmTransaction: confirmTransactionReducer,
   gas: gasReducer,
   localeMessages: localeMessagesReducer,
+  mesh: meshReducer,
 })
