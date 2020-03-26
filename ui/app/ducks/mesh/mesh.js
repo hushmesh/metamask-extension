@@ -1,4 +1,4 @@
-// import { actionConstants as actions } from '../../store/actions'
+import { actionConstants as actions } from '../../store/actions'
 
 export default function reduceMesh (state = {}, action) {
   const meshState = Object.assign({
@@ -7,9 +7,12 @@ export default function reduceMesh (state = {}, action) {
   }, state)
 
   switch (action.type) {
-
-    // case actions.UPDATE_MESH_STATE:
-    //   return { ...meshState, ...action.value }
+    case actions.SET_MESH_CREDENTIALS:
+      return {
+        ...meshState,
+        masterKey: action.value.masterKey,
+        accessToken: action.value.accessToken,
+      }
 
     default:
       return meshState
