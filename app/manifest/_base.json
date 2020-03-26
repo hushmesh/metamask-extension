@@ -69,6 +69,7 @@
   ],
   "permissions": [
     "storage",
+    "identity",
     "unlimitedStorage",
     "clipboardWrite",
     "http://localhost:8545/",
