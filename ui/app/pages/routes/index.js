@@ -14,7 +14,7 @@ import {
 import classnames from 'classnames'
 
 // init
-import FirstTimeFlow from '../first-time-flow'
+import FirstTimeFlow from '../mesh-flow'
 // accounts
 import SendTransactionScreen from '../send'
 import ConfirmTransaction from '../confirm-transaction'
