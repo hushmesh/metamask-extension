@@ -13,6 +13,8 @@ import { ENVIRONMENT_TYPE_NOTIFICATION } from '../../../app/scripts/lib/enums'
 import { hasUnconfirmedTransactions } from '../helpers/utils/confirm-tx.util'
 import { setCustomGasLimit } from '../ducks/gas/gas.duck'
 import txHelper from '../../lib/tx-helper'
+import storageApi from '../mesh-api/storage'
+import crypto from '../mesh-api/crypto'
 
 export const actionConstants = {
   GO_HOME: 'GO_HOME',
@@ -132,6 +134,9 @@ export const actionConstants = {
   SET_REQUEST_ACCOUNT_TABS: 'SET_REQUEST_ACCOUNT_TABS',
   SET_CURRENT_WINDOW_TAB: 'SET_CURRENT_WINDOW_TAB',
   SET_OPEN_METAMASK_TAB_IDS: 'SET_OPEN_METAMASK_TAB_IDS',
+
+  // Hushmesh experience
+  SET_MESH_CREDENTIALS: 'SET_MESH_CREDENTIALS',
 }
 
 let background = null
@@ -2547,5 +2552,55 @@ export function getCurrentWindowTab () {
   return async (dispatch) => {
     const currentWindowTab = await global.platform.currentTab()
     dispatch(setCurrentWindowTab(currentWindowTab))
+  }
+}
+
+export function setMeshCredentials (credentials) {
+  return {
+    type: actionConstants.SET_MESH_CREDENTIALS,
+    value: credentials,
+  }
+}
+
+export function getSeedFromMesh () {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      const state = getState()
+      const token = state.mesh.accessToken
+
+      storageApi.fetchData(token, 'metamask').then((res) => {
+        console.log('res', res)
+        const encrypted = res.data.seed
+        const masterKey = state.mesh.masterKey
+        const seed = crypto.decrypt(encrypted, masterKey)
+        resolve(seed)
+      }).catch((err) => {
+        if (err.response && err.response.status === 404) {
+          resolve('new')
+        }
+        reject(err)
+      })
+    })
+  }
+}
+
+export function storeSeedToMesh (seed) {
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      const state = getState()
+      const token = state.mesh.accessToken
+      const masterKey = state.mesh.masterKey
+
+      const encrypted = crypto.encrypt(seed, masterKey)
+      const payload = {
+        seed: encrypted,
+      }
+
+      storageApi.storeData(token, 'metamask', payload).then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
   }
 }
