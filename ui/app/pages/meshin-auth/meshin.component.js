@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../../components/ui/loading-screen'
-import { INITIALIZE_CREATE_SEED_ROUTE_MESH } from '../../helpers/constants/routes'
+import { INITIALIZE_CREATE_SEED_ROUTE_MESH, DEFAULT_ROUTE } from '../../helpers/constants/routes'
 
 function getUrlParameter (name, url) {
   if (!url) {
@@ -24,10 +24,11 @@ export default class Meshin extends PureComponent {
     history: PropTypes.object,
     setMeshCredentials: PropTypes.func,
     getSeedFromMesh: PropTypes.func,
+    tryUnlockMetamask: PropTypes.func,
   }
 
   componentDidMount () {
-    const { setMeshCredentials, getSeedFromMesh, history } = this.props
+    const { setMeshCredentials, getSeedFromMesh, history, tryUnlockMetamask } = this.props
     const accessToken = getUrlParameter('access_token')
     const jwt = getUrlParameter('id_token')
     let masterKey = ''
@@ -38,12 +39,12 @@ export default class Meshin extends PureComponent {
       masterKey = jwtObj.masterKey
     }
     setMeshCredentials({ accessToken, masterKey })
-    getSeedFromMesh().then((res) => {
+    getSeedFromMesh().then(async (res) => {
       if (res === 'new') {
         history.push(INITIALIZE_CREATE_SEED_ROUTE_MESH)
       } else {
-        // TODO: unlock
-        console.log('unlock account mesh logic')
+        await tryUnlockMetamask(masterKey)
+        history.push(DEFAULT_ROUTE)
       }
     })
   }
