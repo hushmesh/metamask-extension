@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from '../../ui/button'
+import Meshlib from './meshlib'
 
-const getAuthUrl = (options) => {
-  const BASE_URL = 'https://api-dev.hshm.sh/v0/init'
-  const { responseType, clientId, redirectUri } = options
-  const url = `${BASE_URL}?&response_type=${responseType}&client_id=${clientId}&redirect_uri=` + encodeURIComponent(redirectUri)
-  return url
-}
+const meshApi = new Meshlib({
+  clientId: 'XE6PJ0DhUkLXqYYnENunqdswpTw4UDGD',
+  responseType: 'token_id_token',
+  redirectUri: 'chrome-extension://npmgajiaihfjibkgojndemlehpalicjc/home.html#meshin-auth',
+})
 
 export default class MeshinButton extends Component {
 
@@ -25,19 +25,7 @@ export default class MeshinButton extends Component {
     } = this.props
 
     const handler = () => {
-      const redirectUri = chrome.identity.getRedirectURL()
-      const url = getAuthUrl({
-        clientId: 'XE6PJ0DhUkLXqYYnENunqdswpTw4UDGD',
-        responseType: 'token_id_token',
-        redirectUri: redirectUri,
-      })
-
-      chrome.identity.launchWebAuthFlow({
-        url,
-        interactive: true,
-      }, (res) => {
-        console.log('WEB AUTH FLOW SUCCESS >>> ', res)
-      })
+      meshApi.meshin()
     }
 
     return (
@@ -50,7 +38,7 @@ export default class MeshinButton extends Component {
           onClick={handler}
           data-testid="page-container-footer-next"
         >
-          Meshin
+          Dev Meshin
         </Button>
       </div>
     )
