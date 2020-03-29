@@ -32,6 +32,8 @@ const CONNECTED_ROUTE = '/connected'
 
 const INITIALIZE_ROUTE = '/initialize'
 const INITIALIZE_WELCOME_ROUTE = '/initialize/welcome'
+const INITIALIZE_CREATE_SEED_ROUTE_MESH = '/initialize/mesh-new-seed'
+const INITIALIZE_UNLOCK_ROUTE_MESH = '/initialize/meshin'
 const INITIALIZE_UNLOCK_ROUTE = '/initialize/unlock'
 const INITIALIZE_CREATE_PASSWORD_ROUTE = '/initialize/create-password'
 const INITIALIZE_IMPORT_WITH_SEED_PHRASE_ROUTE = '/initialize/create-password/import-with-seed-phrase'
@@ -71,6 +73,8 @@ export {
   SEND_ROUTE,
   INITIALIZE_ROUTE,
   INITIALIZE_WELCOME_ROUTE,
+  INITIALIZE_UNLOCK_ROUTE_MESH,
+  INITIALIZE_CREATE_SEED_ROUTE_MESH,
   INITIALIZE_UNLOCK_ROUTE,
   INITIALIZE_CREATE_PASSWORD_ROUTE,
   INITIALIZE_IMPORT_WITH_SEED_PHRASE_ROUTE,

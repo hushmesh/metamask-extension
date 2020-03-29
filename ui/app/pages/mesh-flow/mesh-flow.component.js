@@ -56,7 +56,6 @@ export default class MeshFlow extends PureComponent {
 
   handleCreateNewAccount = async () => {
     const { createNewAccount, storeSeedToMesh, completeOnboarding, masterKey, history } = this.props
-    console.log('handleCreateNewAccount')
     try {
       const seedPhrase = await createNewAccount(masterKey)
       storeSeedToMesh(seedPhrase)

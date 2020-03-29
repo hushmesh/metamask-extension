@@ -53,7 +53,7 @@ import { Modal } from '../../components/app/modals'
 import Alert from '../../components/ui/alert'
 
 import AppHeader from '../../components/app/app-header'
-import UnlockPage from '../unlock-page'
+import UnlockPage from '../mesh-unlock-page'
 
 import {
   submittedPendingTransactionsSelector,
