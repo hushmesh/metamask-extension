@@ -37,18 +37,10 @@ export default class MeshFlow extends PureComponent {
 
   componentDidMount () {
     const {
-      completedOnboarding,
       history,
       isInitialized,
       isUnlocked,
-      showingSeedPhraseBackupAfterOnboarding,
-      seedPhraseBackedUp,
     } = this.props
-
-    if (completedOnboarding && (!showingSeedPhraseBackupAfterOnboarding || seedPhraseBackedUp)) {
-      history.push(DEFAULT_ROUTE)
-      return
-    }
 
     if (isInitialized && !isUnlocked) {
       history.push(INITIALIZE_UNLOCK_ROUTE_MESH)
