@@ -2569,7 +2569,6 @@ export function getSeedFromMesh () {
       const token = state.mesh.accessToken
 
       storageApi.fetchData(token, 'metamask').then((res) => {
-        console.log('res', res)
         const encrypted = res.data.seed
         const masterKey = state.mesh.masterKey
         const seed = crypto.decrypt(encrypted, masterKey)
