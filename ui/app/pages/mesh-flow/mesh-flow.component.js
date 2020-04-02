@@ -57,10 +57,11 @@ export default class MeshFlow extends PureComponent {
   }
 
   handleCreateNewAccount = async () => {
-    const { createNewAccount, storeSeedToMesh, completeOnboarding, masterKey, history } = this.props
+    const { createNewAccount, storeSeedToMesh, completeOnboarding, unlockAccount, masterKey, history } = this.props
     try {
       const seedPhrase = await createNewAccount(masterKey)
       storeSeedToMesh(seedPhrase)
+      await unlockAccount(masterKey)
       await completeOnboarding()
       history.push(DEFAULT_ROUTE)
     } catch (error) {
