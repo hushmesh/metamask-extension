@@ -27,7 +27,6 @@ export default class UnlockPage extends Component {
 
     return (
       <div className="unlock-page__container">
-        <h1>Mesh Create Seed</h1>
         <div className="unlock-page">
           <div className="unlock-page__mascot-container">
             <Mascot

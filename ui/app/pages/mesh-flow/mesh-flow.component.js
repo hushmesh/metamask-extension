@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 import MeshInit from './mesh-init/mesh-init.component'
 import MeshCreateSeed from './mesh-create-seed/mesh-create-seed.component'
+import MeshWrongPassword from './mesh-wrong-password/mesh-wrong-password.component'
 
 import {
   DEFAULT_ROUTE,
   INITIALIZE_CREATE_SEED_ROUTE_MESH,
   INITIALIZE_UNLOCK_ROUTE_MESH,
+  INITIALIZE_MESH_WRONG_PASSWORD,
 } from '../../helpers/constants/routes'
 
 export default class MeshFlow extends PureComponent {
@@ -96,14 +98,20 @@ export default class MeshFlow extends PureComponent {
 
     return (
       <div className="first-time-flow">
-        <h1>Meshin flow</h1>
         <Switch>
           <Route
             path={INITIALIZE_UNLOCK_ROUTE_MESH}
             render={(routeProps) => (
               <MeshInit
                 { ...routeProps }
-                onUnlock={this.handleUnlock}
+              />
+            )}
+          />
+          <Route
+            path={INITIALIZE_MESH_WRONG_PASSWORD}
+            render={(routeProps) => (
+              <MeshWrongPassword
+                { ...routeProps }
               />
             )}
           />
@@ -115,6 +123,15 @@ export default class MeshFlow extends PureComponent {
                 isImportedKeyring={isImportedKeyring}
                 onCreateNewAccount={this.handleCreateNewAccount}
                 onCreateNewAccountFromSeed={this.handleImportWithSeedPhrase}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="*"
+            render={(routeProps) => (
+              <MeshInit
+                { ...routeProps }
               />
             )}
           />

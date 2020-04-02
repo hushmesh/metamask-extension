@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../../components/ui/loading-screen'
-import { INITIALIZE_CREATE_SEED_ROUTE_MESH, DEFAULT_ROUTE } from '../../helpers/constants/routes'
+import { INITIALIZE_CREATE_SEED_ROUTE_MESH, INITIALIZE_MESH_WRONG_PASSWORD, DEFAULT_ROUTE } from '../../helpers/constants/routes'
 
 function getUrlParameter (name, url) {
   if (!url) {
@@ -24,11 +24,14 @@ export default class Meshin extends PureComponent {
     history: PropTypes.object,
     setMeshCredentials: PropTypes.func,
     getSeedFromMesh: PropTypes.func,
+    createNewAccountFromSeed: PropTypes.func,
     tryUnlockMetamask: PropTypes.func,
+    completeOnboarding: PropTypes.func,
+    isInitialized: PropTypes.bool,
   }
 
   componentDidMount () {
-    const { setMeshCredentials, getSeedFromMesh, history, tryUnlockMetamask } = this.props
+    const { isInitialized, setMeshCredentials, getSeedFromMesh, history, tryUnlockMetamask, createNewAccountFromSeed, completeOnboarding } = this.props
     const accessToken = getUrlParameter('access_token')
     const jwt = getUrlParameter('id_token')
     let masterKey = ''
@@ -43,8 +46,23 @@ export default class Meshin extends PureComponent {
       if (res === 'new') {
         history.push(INITIALIZE_CREATE_SEED_ROUTE_MESH)
       } else {
-        await tryUnlockMetamask(masterKey)
-        history.push(DEFAULT_ROUTE)
+        // if existing seed in the mesh
+        if (isInitialized) {
+          try {
+            await tryUnlockMetamask(masterKey)
+            history.push(DEFAULT_ROUTE)
+          } catch (err) {
+            history.push(INITIALIZE_MESH_WRONG_PASSWORD)
+          }
+        } else {
+          try {
+            await createNewAccountFromSeed(masterKey, res)
+            await completeOnboarding()
+            history.push(DEFAULT_ROUTE)
+          } catch (error) {
+            throw new Error(error.message)
+          }
+        }
       }
     })
   }
