@@ -45,8 +45,9 @@ export default class UnlockPage extends Component {
             { t('welcome') }
           </h1>
           <div>Meshin to get your metamask credentials</div>
-
-          <MeshinButton />
+          <div className="flow-controls-wrap">
+            <MeshinButton />
+          </div>
         </div>
       </div>
     )

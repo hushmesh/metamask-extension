@@ -37,7 +37,9 @@ export default class UnlockPage extends Component {
             <p>Your Mesh account doesn't match to the current Metamask user.</p>
           </div>
 
-          <MeshinButton />
+          <div className="flow-controls-wrap">
+            <MeshinButton />
+          </div>
 
         </div>
       </div>

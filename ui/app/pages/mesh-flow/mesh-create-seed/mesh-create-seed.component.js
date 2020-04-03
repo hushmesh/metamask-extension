@@ -42,13 +42,15 @@ export default class UnlockPage extends Component {
             <p>You don't have metamask credentials in your mesh account. Do you want to create new account and store it in the Mesh?</p>
           </div>
 
-          <Button
-            type="primary"
-            className="first-time-flow__button"
-            onClick={this.handleCreate}
-          >
-            Create new Account
-          </Button>
+          <div className="flow-controls-wrap">
+            <Button
+              type="primary"
+              className="first-time-flow__button"
+              onClick={this.handleCreate}
+            >
+              Create new Account
+            </Button>
+          </div>
         </div>
       </div>
     )

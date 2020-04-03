@@ -121,7 +121,9 @@ export default class UnlockPage extends Component {
             { t('welcomeBack') }
           </h1>
           <div>{ t('unlockMessage') }</div>
-          <MeshinButton />
+          <div className="flow-controls-wrap">
+            <MeshinButton />
+          </div>
         </div>
       </div>
     )
