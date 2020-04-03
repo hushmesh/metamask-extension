@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, matchPath } from 'react-router-dom'
 import MeshInit from './mesh-init/mesh-init.component'
 import MeshCreateSeed from './mesh-create-seed/mesh-create-seed.component'
 import MeshWrongPassword from './mesh-wrong-password/mesh-wrong-password.component'
@@ -18,6 +18,7 @@ export default class MeshFlow extends PureComponent {
     createNewAccount: PropTypes.func,
     createNewAccountFromSeed: PropTypes.func,
     history: PropTypes.object,
+    location: PropTypes.object,
     isInitialized: PropTypes.bool,
     isUnlocked: PropTypes.bool,
     masterKey: PropTypes.string,
@@ -40,9 +41,15 @@ export default class MeshFlow extends PureComponent {
       history,
       isInitialized,
       isUnlocked,
+      location: { pathname },
     } = this.props
 
-    if (isInitialized && !isUnlocked) {
+    const isWrongAccountPath = matchPath(pathname, {
+      path: INITIALIZE_MESH_WRONG_PASSWORD,
+      exact: true,
+    })
+
+    if (isInitialized && !isWrongAccountPath && !isUnlocked) {
       history.push(INITIALIZE_UNLOCK_ROUTE_MESH)
       return
     }
