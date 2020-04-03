@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import MeshinDevButton from '../../../components/app/meshin/meshin-dev-button.component'
-import MeshinButton from '../../../components/app/meshin/meshin-button.component'
+import MeshinButton from '../../../components/app/meshin'
 import { EventEmitter } from 'events'
 import Mascot from '../../../components/ui/mascot'
 import { DEFAULT_ROUTE } from '../../../helpers/constants/routes'
@@ -48,7 +47,6 @@ export default class UnlockPage extends Component {
           <div>Meshin to get your metamask credentials</div>
 
           <MeshinButton />
-          <MeshinDevButton />
         </div>
       </div>
     )

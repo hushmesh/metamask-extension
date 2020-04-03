@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import MeshinDevButton from '../../../components/app/meshin/meshin-dev-button.component'
-import MeshinButton from '../../../components/app/meshin/meshin-button.component'
+import MeshinButton from '../../../components/app/meshin'
 import { EventEmitter } from 'events'
 import Mascot from '../../../components/ui/mascot'
 
@@ -39,7 +38,6 @@ export default class UnlockPage extends Component {
           </div>
 
           <MeshinButton />
-          <MeshinDevButton />
 
         </div>
       </div>

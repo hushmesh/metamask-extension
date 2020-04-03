@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import MeshinButton from '../../components/app/meshin/meshin-button.component'
-import MeshinDevButton from '../../components/app/meshin/meshin-dev-button.component'
+import MeshinButton from '../../components/app/meshin'
 import getCaretCoordinates from 'textarea-caret'
 import { EventEmitter } from 'events'
 import Mascot from '../../components/ui/mascot'
@@ -123,7 +122,6 @@ export default class UnlockPage extends Component {
           </h1>
           <div>{ t('unlockMessage') }</div>
           <MeshinButton />
-          <MeshinDevButton />
         </div>
       </div>
     )
