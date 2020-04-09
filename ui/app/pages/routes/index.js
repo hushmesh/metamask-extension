@@ -54,6 +54,7 @@ import Alert from '../../components/ui/alert'
 
 import AppHeader from '../../components/app/app-header'
 import UnlockPage from '../mesh-unlock-page'
+import MeshProgressPage from '../mesh-progress-page'
 
 import {
   submittedPendingTransactionsSelector,
@@ -79,6 +80,7 @@ import {
   INITIALIZE_UNLOCK_ROUTE,
   CONNECT_ROUTE,
   CONNECTED_ROUTE,
+  MESHIN_PROGRESS_ROUTE_MESH,
 } from '../../helpers/constants/routes'
 
 // enums
@@ -119,6 +121,7 @@ class Routes extends Component {
         <Route path={AUTH_ROUTE} component={MeshinAuth} exact />
         <Route path={INITIALIZE_ROUTE} component={FirstTimeFlow} />
         <Initialized path={UNLOCK_ROUTE} component={UnlockPage} exact />
+        <Initialized path={MESHIN_PROGRESS_ROUTE_MESH} component={MeshProgressPage} exact />
         <Initialized path={RESTORE_VAULT_ROUTE} component={RestoreVaultPage} exact />
         <Authenticated path={REVEAL_SEED_ROUTE} component={RevealSeedConfirmation} exact />
         <Authenticated path={MOBILE_SYNC_ROUTE} component={MobileSyncPage} exact />
