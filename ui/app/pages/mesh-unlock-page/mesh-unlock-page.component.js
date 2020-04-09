@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import MeshinButton from '../../components/app/meshin'
+import MeshButton from '../../components/ui/mesh-button'
 import Button from '@material-ui/core/Button'
 import getCaretCoordinates from 'textarea-caret'
 import { EventEmitter } from 'events'
@@ -132,13 +132,11 @@ export default class UnlockPage extends Component {
           </h1>
           <div>{ t('unlockMessage') }</div>
           <div className="flow-controls-wrap">
-            <Button
-              type="secondary"
-              className="meshin-button"
+            <MeshButton
               onClick={this.startMeshin}
             >
               Meshin
-            </Button>
+            </MeshButton>
           </div>
         </div>
       </div>

@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from '../../ui/button'
+import Button from '../../ui/mesh-button'
 
 export default class MeshinButton extends Component {
 
   static propTypes = {
-    disabled: PropTypes.bool,
-    submitButtonType: PropTypes.string,
-    buttonSizeLarge: PropTypes.bool,
     history: PropTypes.object,
     getSeedFromMesh: PropTypes.func,
     getMeshCredentials: PropTypes.func,
@@ -15,9 +12,6 @@ export default class MeshinButton extends Component {
 
   render () {
     const {
-      disabled,
-      submitButtonType,
-      buttonSizeLarge = false,
       getMeshCredentials,
       getSeedFromMesh,
       history,
@@ -33,12 +27,7 @@ export default class MeshinButton extends Component {
     return (
       <div className="meshin-wrap">
         <Button
-          type={submitButtonType || 'secondary'}
-          large={buttonSizeLarge}
-          className="meshin-button"
-          disabled={disabled}
           onClick={handler}
-          data-testid="page-container-footer-next"
         >
           Meshin
         </Button>

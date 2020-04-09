@@ -45,7 +45,7 @@ export default class UnlockPage extends Component {
           <div className="flow-controls-wrap">
             <Button
               type="primary"
-              className="first-time-flow__button"
+              className="first-time-flow__button mesh-color-button"
               onClick={this.handleCreate}
             >
               Create new Account
