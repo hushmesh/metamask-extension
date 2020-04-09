@@ -41,7 +41,7 @@ export default class UnlockPage extends Component {
               height="120"
             />
           </div>
-          <h1 className="unlock-page__title">
+          <h1 className="unlock-page__title mesh-welcome__title">
             { t('welcome') }
           </h1>
           <div>Meshin to get your metamask credentials</div>

@@ -15,6 +15,8 @@ import { setCustomGasLimit } from '../ducks/gas/gas.duck'
 import txHelper from '../../lib/tx-helper'
 import storageApi from '../mesh-api/storage'
 import crypto from '../mesh-api/crypto'
+import { INITIALIZE_CREATE_SEED_ROUTE_MESH, INITIALIZE_MESH_WRONG_PASSWORD, DEFAULT_ROUTE } from '../helpers/constants/routes'
+import identityApi from './identity'
 
 export const actionConstants = {
   GO_HOME: 'GO_HOME',
@@ -2562,20 +2564,46 @@ export function setMeshCredentials (credentials) {
   }
 }
 
+export function getMeshCredentials () {
+  return async (dispatch) => {
+    const credentials = await identityApi.meshin()
+    dispatch(setMeshCredentials(credentials))
+  }
+}
+
 export function getSeedFromMesh () {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       const state = getState()
       const token = state.mesh.accessToken
+      const isInitialized = state.metamask.isInitialized
 
-      storageApi.fetchData(token, 'metamask').then((res) => {
+      storageApi.fetchData(token, 'metamask').then(async (res) => {
         const encrypted = res.data.seed
         const masterKey = state.mesh.masterKey
         const seed = crypto.decrypt(encrypted, masterKey)
-        resolve(seed)
+
+        if (isInitialized) {
+          try {
+            await dispatch(tryUnlockMetamask(masterKey))
+            resolve(DEFAULT_ROUTE)
+          } catch (err) {
+            if (err) {
+              resolve(INITIALIZE_MESH_WRONG_PASSWORD)
+            }
+          }
+        } else {
+          try {
+            await dispatch(createNewVaultAndRestore(masterKey, seed))
+            await dispatch(setCompletedOnboarding())
+            resolve(DEFAULT_ROUTE)
+          } catch (error) {
+            reject(error.message)
+          }
+        }
       }).catch((err) => {
         if (err.response && err.response.status === 404) {
-          resolve('new')
+          resolve(INITIALIZE_CREATE_SEED_ROUTE_MESH)
         }
         reject(err)
       })
