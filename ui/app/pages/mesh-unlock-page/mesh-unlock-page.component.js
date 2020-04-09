@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import MeshinButton from '../../components/app/meshin'
+import Button from '@material-ui/core/Button'
 import getCaretCoordinates from 'textarea-caret'
 import { EventEmitter } from 'events'
 import Mascot from '../../components/ui/mascot'
-import { DEFAULT_ROUTE } from '../../helpers/constants/routes'
+import { DEFAULT_ROUTE, MESHIN_PROGRESS_ROUTE_MESH } from '../../helpers/constants/routes'
 
 export default class UnlockPage extends Component {
   static contextTypes = {
@@ -104,6 +105,15 @@ export default class UnlockPage extends Component {
     }
   }
 
+  startMeshin = () => {
+    const { history } = this.props
+    if (location.pathname.includes('popup')) {
+      global.platform.openExtensionInBrowser(MESHIN_PROGRESS_ROUTE_MESH)
+    } else {
+      history.push(MESHIN_PROGRESS_ROUTE_MESH)
+    }
+  }
+
   render () {
     const { t } = this.context
 
@@ -122,7 +132,13 @@ export default class UnlockPage extends Component {
           </h1>
           <div>{ t('unlockMessage') }</div>
           <div className="flow-controls-wrap">
-            <MeshinButton />
+            <Button
+              type="secondary"
+              className="meshin-button"
+              onClick={this.startMeshin}
+            >
+              Meshin
+            </Button>
           </div>
         </div>
       </div>
