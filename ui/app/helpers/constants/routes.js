@@ -1,7 +1,6 @@
 const DEFAULT_ROUTE = '/'
 const UNLOCK_ROUTE = '/unlock'
 const LOCK_ROUTE = '/lock'
-const AUTH_ROUTE = '/meshin-auth'
 const SETTINGS_ROUTE = '/settings'
 const GENERAL_ROUTE = '/settings/general'
 const CONNECTIONS_ROUTE = '/settings/connections'
@@ -35,6 +34,7 @@ const INITIALIZE_WELCOME_ROUTE = '/initialize/welcome'
 const INITIALIZE_CREATE_SEED_ROUTE_MESH = '/initialize/mesh-new-seed'
 const INITIALIZE_MESH_WRONG_PASSWORD = '/initialize/mesh-wrong-user'
 const INITIALIZE_UNLOCK_ROUTE_MESH = '/initialize/meshin'
+const MESHIN_PROGRESS_ROUTE_MESH = '/meshin-progress'
 const INITIALIZE_UNLOCK_ROUTE = '/initialize/unlock'
 const INITIALIZE_CREATE_PASSWORD_ROUTE = '/initialize/create-password'
 const INITIALIZE_IMPORT_WITH_SEED_PHRASE_ROUTE = '/initialize/create-password/import-with-seed-phrase'
@@ -60,7 +60,6 @@ export {
   DEFAULT_ROUTE,
   UNLOCK_ROUTE,
   LOCK_ROUTE,
-  AUTH_ROUTE,
   SETTINGS_ROUTE,
   REVEAL_SEED_ROUTE,
   MOBILE_SYNC_ROUTE,
@@ -84,6 +83,7 @@ export {
   INITIALIZE_SEED_PHRASE_ROUTE,
   INITIALIZE_CONFIRM_SEED_PHRASE_ROUTE,
   INITIALIZE_END_OF_FLOW_ROUTE,
+  MESHIN_PROGRESS_ROUTE_MESH,
   CONFIRM_TRANSACTION_ROUTE,
   CONFIRM_SEND_ETHER_PATH,
   CONFIRM_SEND_TOKEN_PATH,
