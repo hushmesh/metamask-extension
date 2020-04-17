@@ -2,12 +2,13 @@
   margin-top: 40px;
 }
 
-.mesh-welcome__page {
+.mesh-flow__page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 30px;
+  padding-top: 60px;
   font-weight: 400;
   color: $silver-chalice;
 }
@@ -16,24 +17,34 @@
   margin-top: 10px;
 }
 
-.mesh-welcome {
+.mesh-flow {
   &__title {
     font-size: 36px;
     font-weight: bold;
     font-family: Montserrat Regular;
     color: #2D3436;
+    margin-top: 10px;
   }
   &__message {
-    margin-top: 50px;
+    margin-top: 40px;
     color: #2D3436;
     text-align: center;
     font-family: Lato;
     font-size: 18px;
     line-height: 1.4;
   }
+  &__footer {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: flex-end;
+  }
 }
 
 .mesh-color-button {
-  background-color: #0033bb;
+  background-color: #0000c0;
   height: auto;
+}
+
+.create-seed__message {
+  max-width: 570px;
 }

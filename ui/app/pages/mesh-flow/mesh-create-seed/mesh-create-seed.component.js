@@ -27,7 +27,7 @@ export default class UnlockPage extends Component {
 
     return (
       <div className="unlock-page__container">
-        <div className="unlock-page">
+        <div className="create-wallet-page mesh-flow__page">
           <div className="unlock-page__mascot-container">
             <Mascot
               animationEventEmitter={this.animationEventEmitter}
@@ -35,11 +35,14 @@ export default class UnlockPage extends Component {
               height="120"
             />
           </div>
-          <h1 className="unlock-page__title">
-            Create new Seed
+          <h1 className="mesh-flow__title">
+            Create a New Wallet
           </h1>
-          <div>
-            <p>You don't have metamask credentials in your mesh account. Do you want to create new account and store it in the Mesh?</p>
+          <div className="mesh-flow__message create-seed__message">
+            <p style={{ marginBottom: '30px' }}>
+              A new Metamask wallet and seed phrase will be created for you.
+            </p>
+            <p>But you won't have to worry about how to manage your seed phrase or private key. The mesh will handle all of that safely and securely for you. Best of all, you don't need to create another password for Metamask.</p>
           </div>
 
           <div className="flow-controls-wrap">
@@ -48,8 +51,11 @@ export default class UnlockPage extends Component {
               className="first-time-flow__button mesh-color-button"
               onClick={this.handleCreate}
             >
-              Create new Account
+              Create My Wallet
             </Button>
+          </div>
+          <div className="mesh-flow__footer">
+            <img className="mesh-powered" src="images/powered-mesh.svg" height={20} alt="powered by meshin" title="Powered by Mesh in" />
           </div>
         </div>
       </div>
