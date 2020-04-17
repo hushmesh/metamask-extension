@@ -1,26 +1,37 @@
 .mesh-button {
   display: inline-block;
   text-decoration: none;
-  background: #0033bb;
+  background: #0000c0;
   color: #fff;
-  border-radius: 50px;
-  padding: 12px 24px;
+  border-radius: 5px;
+  padding: 14px 24px;
   cursor: pointer;
   white-space: nowrap;
+  border: 2px solid #0000c0;
+  font-size: 18px;
   &:disabled {
-    background: lighten(#0033bb, 45)
+    background: lighten(#0000c0, 45)
   }
 }
 
 .mesh-button-icon {
   display: inline-flex;
   align-items: center;
-  padding: 8px 24px;
+  padding: 5px 30px 5px 15px;
   img {
-    margin-right: 5px;
+    margin-right: 10px;
   }
   span {
     margin-bottom: 2px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 700;
   }
+}
+
+.separator {
+  height: 38px;
+  width: 1px;
+  background: #fff;
+  opacity: 0.3;
+  margin-right: 10px;
 }

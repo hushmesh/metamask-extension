@@ -33,7 +33,7 @@ export default class UnlockPage extends Component {
 
     return (
       <div className="unlock-page__container">
-        <div className="unlock-page">
+        <div className="mesh-welcome__page">
           <div className="unlock-page__mascot-container">
             <Mascot
               animationEventEmitter={this.animationEventEmitter}
@@ -44,7 +44,11 @@ export default class UnlockPage extends Component {
           <h1 className="unlock-page__title mesh-welcome__title">
             { t('welcome') }
           </h1>
-          <div>Meshin to get your metamask credentials</div>
+          <img className="mesh-powered" src="images/powered-mesh.svg" height={20} alt="powered by meshin" title="Powered by Mesh in" />
+          <div className="mesh-welcome__message">
+            <p>Connecting you to Ethereum and the Decentralized Web.</p>
+            <p>Mesh in to get started.</p>
+          </div>
           <div className="flow-controls-wrap">
             <MeshinButton />
           </div>

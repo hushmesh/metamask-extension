@@ -6,6 +6,7 @@ const Button = ({ ...buttonProps }) => (
     { ...buttonProps }
   >
     <img src="images/meshin-icon.svg" width={20} height={20} alt="meshin icon" title="Meshin" />
+    <div className="separator"></div>
     <span>mesh in</span>
   </button>
 )

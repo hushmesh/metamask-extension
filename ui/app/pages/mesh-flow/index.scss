@@ -2,9 +2,34 @@
   margin-top: 40px;
 }
 
+.mesh-welcome__page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px;
+  font-weight: 400;
+  color: $silver-chalice;
+}
+
+.mesh-powered {
+  margin-top: 10px;
+}
+
 .mesh-welcome {
   &__title {
-    font-size: 28px;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: Montserrat Regular;
+    color: #2D3436;
+  }
+  &__message {
+    margin-top: 50px;
+    color: #2D3436;
+    text-align: center;
+    font-family: Lato;
+    font-size: 18px;
+    line-height: 1.4;
   }
 }
 
