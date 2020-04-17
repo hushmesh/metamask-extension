@@ -327,7 +327,8 @@ export default class AccountMenu extends Component {
               history.push(DEFAULT_ROUTE)
             }}
           >
-            { t('lock') }
+            <img src="images/meshout-icon.svg" width={20} height={20} alt="meshout icon" title="Mesh out" />
+            <span>mesh out</span>
           </button>
         </Item>
         <Divider />
