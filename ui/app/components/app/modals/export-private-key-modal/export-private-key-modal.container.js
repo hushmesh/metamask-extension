@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { exportAccount, hideWarning, showModal, hideModal } from '../../../../store/actions'
+import { exportAccount, hideWarning, showModal, hideModal, getMeshDataBg } from '../../../../store/actions'
 import { getSelectedIdentity } from '../../../../selectors/selectors'
-import ExportPrivateKeyModal from './export-private-key-modal.component'
+import ExportPrivateKeyModal from './export-private-key-modal-mesh.component'
 
 function mapStateToPropsFactory () {
   let selectedIdentity = null
@@ -32,6 +32,7 @@ function mapDispatchToProps (dispatch) {
     },
     showAccountDetailModal: () => dispatch(showModal({ name: 'ACCOUNT_DETAILS' })),
     hideModal: () => dispatch(hideModal()),
+    getMeshDataBg: () => dispatch(getMeshDataBg()),
   }
 }
 
