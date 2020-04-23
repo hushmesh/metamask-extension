@@ -17,13 +17,13 @@
     }
   },
   "icons": {
-    "16": "images/icon-16.png",
-    "19": "images/icon-19.png",
-    "32": "images/icon-32.png",
-    "38": "images/icon-38.png",
-    "64": "images/icon-64.png",
-    "128": "images/icon-128.png",
-    "512": "images/icon-512.png"
+    "16": "images/mesh-icons/meshin-rp-logo-16.png",
+    "19": "images/mesh-icons/meshin-rp-logo-19.png",
+    "32": "images/mesh-icons/meshin-rp-logo-32.png",
+    "38": "images/mesh-icons/meshin-rp-logo-38.png",
+    "64": "images/mesh-icons/meshin-rp-logo-64.png",
+    "128": "images/mesh-icons/meshin-rp-logo-128.png",
+    "512": "images/mesh-icons/meshin-rp-logo-512.png"
   },
   "default_locale": "en",
   "background": {
@@ -35,13 +35,13 @@
   },
   "browser_action": {
     "default_icon": {
-      "16": "images/icon-16.png",
-      "19": "images/icon-19.png",
-      "32": "images/icon-32.png",
-      "38": "images/icon-38.png",
-      "64": "images/icon-64.png",
-      "128": "images/icon-128.png",
-      "512": "images/icon-512.png"
+      "16": "images/mesh-icons/meshin-rp-logo-16.png",
+      "19": "images/mesh-icons/meshin-rp-logo-19.png",
+      "32": "images/mesh-icons/meshin-rp-logo-32.png",
+      "38": "images/mesh-icons/meshin-rp-logo-38.png",
+      "64": "images/mesh-icons/meshin-rp-logo-64.png",
+      "128": "images/mesh-icons/meshin-rp-logo-128.png",
+      "512": "images/mesh-icons/meshin-rp-logo-512.png"
     },
     "default_title": "MetaMask",
     "default_popup": "popup.html"
