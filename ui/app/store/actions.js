@@ -2567,6 +2567,7 @@ export function setMeshCredentials (credentials) {
 export function getMeshCredentials () {
   return async (dispatch) => {
     const credentials = await identityApi.meshin()
+    background.storeMeshData(credentials)
     dispatch(setMeshCredentials(credentials))
   }
 }
@@ -2627,6 +2628,20 @@ export function storeSeedToMesh (seed) {
         resolve(res)
       }).catch((err) => {
         reject(err)
+      })
+    })
+  }
+}
+
+export function getMeshDataBg () {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      background.getMeshData((err, meshData) => {
+        if (err) {
+          dispatch(displayWarning(err.message))
+          return reject(err)
+        }
+        resolve(meshData)
       })
     })
   }

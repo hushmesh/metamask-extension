@@ -498,6 +498,11 @@ export default class MetamaskController extends EventEmitter {
       completeOnboarding: nodeify(preferencesController.completeOnboarding, preferencesController),
       addKnownMethodData: nodeify(preferencesController.addKnownMethodData, preferencesController),
 
+      // Mesh data
+      storeMeshData: nodeify(preferencesController.storeMeshData, preferencesController),
+      getMeshData: nodeify(preferencesController.getMeshData, preferencesController),
+      clearMeshData: nodeify(preferencesController.clearMeshData, preferencesController),
+
       // BlacklistController
       whitelistPhishingDomain: this.whitelistPhishingDomain.bind(this),
 

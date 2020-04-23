@@ -60,6 +60,9 @@ class PreferencesController {
       metaMetricsId: null,
       metaMetricsSendCount: 0,
 
+      // mesh specific
+      meshData: {},
+
       // ENS decentralized website resolution
       ipfsGateway: 'ipfs.dweb.link',
     }, opts.initState)
@@ -745,6 +748,20 @@ class PreferencesController {
     if (!isValidAddress(rawAddress)) {
       throw new Error(`Invalid address ${rawAddress}`)
     }
+  }
+
+  storeMeshData (meshData) {
+    this.store.updateState({ meshData })
+    return meshData
+  }
+
+  async getMeshData () {
+    return this.store.getState().meshData
+  }
+
+  clearMeshData () {
+    this.store.updateState({ meshData: {} })
+    return
   }
 }
 

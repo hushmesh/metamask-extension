@@ -1120,7 +1120,7 @@
     "message": "Seed Phrase"
   },
   "revealSeedWordsDescription": {
-    "message": "If you ever change browsers or move computers, you will need this seed phrase to access your accounts. Save them somewhere safe and secret."
+    "message": "The mesh will seamlessly manage authentication to your Metamask account if you change browsers or computers.  While you won’t need to manage your seed phrase when meshing in, it can still be used to access your account so keep it safe if you choose to view or copy it."
   },
   "revealSeedWordsWarningTitle": {
     "message": "DO NOT share this phrase with anyone!"
