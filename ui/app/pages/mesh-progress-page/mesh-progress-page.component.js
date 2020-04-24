@@ -125,11 +125,10 @@ export default class UnlockPage extends Component {
   }
 
   render () {
-    const { t } = this.context
 
     return (
       <div className="unlock-page__container">
-        <div className="unlock-page">
+        <div className="create-wallet-page mesh-flow__page">
           <div className="unlock-page__mascot-container">
             <Mascot
               animationEventEmitter={this.animationEventEmitter}
@@ -137,10 +136,18 @@ export default class UnlockPage extends Component {
               height="120"
             />
           </div>
-          <h1 className="unlock-page__title">
-            Meshin
+          <h1 className="mesh-flow__title meshin-progress__title">
+            Accessing Your Wallet...
           </h1>
-          <div>Meshin to get access to you vault</div>
+          <div className="mesh-flow__message">
+            <p>
+              Scan the hashtag to continue.
+            </p>
+          </div>
+
+          <div className="mesh-flow__footer">
+            <img className="mesh-powered" src="images/powered-mesh.svg" height={20} alt="powered by meshin" title="Powered by Mesh in" />
+          </div>
         </div>
       </div>
     )
