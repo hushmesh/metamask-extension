@@ -2590,7 +2590,9 @@ export function getSeedFromMesh () {
             resolve(DEFAULT_ROUTE)
           } catch (err) {
             if (err) {
-              resolve(INITIALIZE_MESH_WRONG_PASSWORD)
+              await dispatch(createNewVaultAndRestore(masterKey, seed))
+              await dispatch(setCompletedOnboarding())
+              resolve(DEFAULT_ROUTE)
             }
           }
         } else {
