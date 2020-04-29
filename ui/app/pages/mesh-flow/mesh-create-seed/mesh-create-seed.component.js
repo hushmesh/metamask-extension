@@ -40,9 +40,9 @@ export default class UnlockPage extends Component {
           </h1>
           <div className="mesh-flow__message create-seed__message">
             <p style={{ marginBottom: '30px' }}>
-              A new Metamask wallet and seed phrase will be created for you.
+              A new MetaMask wallet and seed phrase will be created for you.
             </p>
-            <p>But you won't have to worry about how to manage your seed phrase or private key. The mesh will handle all of that safely and securely for you. Best of all, you don't need to create another password for Metamask.</p>
+            <p>But you won't have to worry about how to manage your seed phrase or private key. The mesh will handle all of that safely and securely for you. Best of all, you don't need to create another password for MetaMask.</p>
           </div>
 
           <div className="flow-controls-wrap">

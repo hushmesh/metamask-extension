@@ -141,7 +141,7 @@ export default class UnlockPage extends Component {
           </h1>
           <div className="mesh-flow__message">
             <p>
-              Scan the hashtag to continue.
+              Snap the meshtag to continue.
             </p>
           </div>
 
