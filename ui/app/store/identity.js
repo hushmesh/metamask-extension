@@ -1,3 +1,24 @@
+import sha256 from 'crypto-js/sha256'
+import Base64 from 'crypto-js/enc-base64'
+import tokenApi from './token'
+
+const makeId = (length) => {
+  let result = ''
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
+}
+
+const generateChallengeData = () => {
+  const codeVerifier = makeId(128)
+  const codeChallenge = Base64.stringify(sha256(codeVerifier)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
+  return { codeVerifier, codeChallenge }
+}
+
 const getAuthUrl = (options) => {
   const BASE_URL = 'https://api.hshm.sh/v0/init'
   const { responseType, clientId, redirectUri } = options
@@ -22,12 +43,15 @@ const getUrlParameter = (name, url) => {
 }
 
 const meshin = () => {
+  const { codeChallenge, codeVerifier } = generateChallengeData()
   return new Promise((resolve, reject) => {
     const redirectUri = chrome.identity.getRedirectURL()
     const url = getAuthUrl({
       clientId: 'XE6PJ0DhUkLXqYYnENunqdswpTw4UDGD',
-      responseType: 'token_id_token',
+      responseType: 'code',
       redirectUri: redirectUri,
+      codeChallenge,
+      codeChallengeMethod: 'S256',
     })
 
     chrome.identity.launchWebAuthFlow({
@@ -35,15 +59,22 @@ const meshin = () => {
       interactive: true,
     }, (res) => {
       console.log('Debug: Web Auth flow success >>> ', res)
-      const accessToken = getUrlParameter('access_token', res)
-      const jwt = getUrlParameter('id_token', res)
-      let masterKey = ''
+      const code = getUrlParameter('code', res)
 
-      if (jwt) {
-        const tokens = jwt.split('.')
-        const jwtObj = JSON.parse(atob(tokens[1]))
-        masterKey = jwtObj.masterKey
-        resolve({ accessToken, masterKey })
+      if (code) {
+        tokenApi.getTokens({ code, codeVerifier }).then((res) => {
+          const accessToken = res.data.access_token
+          const jwt = res.data.id_token
+          let masterKey = ''
+          if (jwt) {
+            const tokens = jwt.split('.')
+            const jwtObj = JSON.parse(atob(tokens[1]))
+            masterKey = jwtObj.masterKey
+          }
+          resolve({ accessToken, masterKey })
+        }).catch((err) => {
+          reject(err)
+        })
       } else {
         reject(res)
       }
