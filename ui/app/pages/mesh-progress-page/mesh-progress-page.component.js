@@ -4,7 +4,7 @@ import MeshinButton from '../../components/app/meshin'
 import getCaretCoordinates from 'textarea-caret'
 import { EventEmitter } from 'events'
 import Mascot from '../../components/ui/mascot'
-import { DEFAULT_ROUTE } from '../../helpers/constants/routes'
+import { DEFAULT_ROUTE, UNLOCK_ROUTE } from '../../helpers/constants/routes'
 
 export default class UnlockPage extends Component {
   static contextTypes = {
@@ -46,15 +46,18 @@ export default class UnlockPage extends Component {
   }
 
   meshin = async () => {
-    console.log('auto meshin')
     const {
       getMeshCredentials,
       getSeedFromMesh,
       history,
     } = this.props
-    await getMeshCredentials()
+    try {
+      await getMeshCredentials()
+    } catch (err) {
+      history.push(UNLOCK_ROUTE)
+      return
+    }
     getSeedFromMesh().then((res) => {
-      console.log('response', res)
       history.push(res)
     })
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from '../../ui/mesh-button'
+import { UNLOCK_ROUTE } from '../../../helpers/constants/routes'
 
 export default class MeshinButton extends Component {
 
@@ -18,7 +19,11 @@ export default class MeshinButton extends Component {
     } = this.props
 
     const handler = async () => {
-      await getMeshCredentials()
+      try {
+        await getMeshCredentials()
+      } catch (err) {
+        history.push(UNLOCK_ROUTE)
+      }
       getSeedFromMesh().then((res) => {
         history.push(res)
       })

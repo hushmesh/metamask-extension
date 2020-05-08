@@ -2566,9 +2566,14 @@ export function setMeshCredentials (credentials) {
 
 export function getMeshCredentials () {
   return async (dispatch) => {
-    const credentials = await identityApi.meshin()
-    background.storeMeshData(credentials)
-    dispatch(setMeshCredentials(credentials))
+    try {
+      const credentials = await identityApi.meshin()
+      background.storeMeshData(credentials)
+      dispatch(setMeshCredentials(credentials))
+    } catch (err) {
+      console.log('You should meshin to continue')
+      throw new Error('You should meshin to continue')
+    }
   }
 }
 
