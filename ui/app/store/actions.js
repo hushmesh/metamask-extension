@@ -15,6 +15,7 @@ import { setCustomGasLimit } from '../ducks/gas/gas.duck'
 import txHelper from '../../lib/tx-helper'
 import storageApi from '../mesh-api/storage'
 import crypto from '../mesh-api/crypto'
+import meshoutApi from '../mesh-api/meshout'
 import { INITIALIZE_CREATE_SEED_ROUTE_MESH, INITIALIZE_MESH_WRONG_PASSWORD, DEFAULT_ROUTE } from '../helpers/constants/routes'
 import identityApi from './identity'
 
@@ -2649,6 +2650,26 @@ export function getMeshDataBg () {
           return reject(err)
         }
         resolve(meshData)
+      })
+    })
+  }
+}
+
+export function meshout () {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      background.getMeshData((err, meshData) => {
+        if (err) {
+          dispatch(displayWarning(err.message))
+          return reject(err)
+        }
+        meshoutApi.meshout(meshData.accessToken)
+          .then(() => {
+            resolve()
+          })
+          .catch((err) => {
+            reject(err)
+          })
       })
     })
   }

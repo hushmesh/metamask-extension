@@ -8,6 +8,7 @@ import {
   lockMetamask,
   hideWarning,
   showModal,
+  meshout,
 } from '../../../store/actions'
 import {
   getAddressConnectedDomainMap,
@@ -50,6 +51,7 @@ function mapDispatchToProps (dispatch) {
       dispatch(toggleAccountMenu())
     },
     lockMetamask: () => {
+      dispatch(meshout())
       dispatch(lockMetamask())
       dispatch(hideWarning())
       dispatch(hideSidebar())
