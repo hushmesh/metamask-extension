@@ -37,7 +37,7 @@ export default class ExportPrivateKeyModal extends Component {
   componentDidMount () {
     this.getMeshCredentials().then((res) => {
       const { address } = this.props.selectedIdentity
-      this.exportAccountAndGetPrivateKey(res.masterKey, address)
+      this.exportAccountAndGetPrivateKey(res.relationshipKey, address)
     })
   }
 

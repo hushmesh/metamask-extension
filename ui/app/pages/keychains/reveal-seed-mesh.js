@@ -14,7 +14,7 @@ class RevealSeedPage extends Component {
 
   componentDidMount () {
     this.getSeedData().then((res) => {
-      this.props.requestRevealSeedWords(res.masterKey)
+      this.props.requestRevealSeedWords(res.relationshipKey)
         .then((seedWords) => this.setState({ seedWords }))
     })
   }

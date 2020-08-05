@@ -19,7 +19,7 @@ export default class MeshFlow extends PureComponent {
     location: PropTypes.object,
     isInitialized: PropTypes.bool,
     isUnlocked: PropTypes.bool,
-    masterKey: PropTypes.string,
+    relationshipKey: PropTypes.string,
     unlockAccount: PropTypes.func,
     nextRoute: PropTypes.string,
     showingSeedPhraseBackupAfterOnboarding: PropTypes.bool,
@@ -48,11 +48,11 @@ export default class MeshFlow extends PureComponent {
   }
 
   handleCreateNewAccount = async () => {
-    const { createNewAccount, storeSeedToMesh, completeOnboarding, unlockAccount, masterKey, history } = this.props
+    const { createNewAccount, storeSeedToMesh, completeOnboarding, unlockAccount, relationshipKey, history } = this.props
     try {
-      const seedPhrase = await createNewAccount(masterKey)
+      const seedPhrase = await createNewAccount(relationshipKey)
       storeSeedToMesh(seedPhrase)
-      await unlockAccount(masterKey)
+      await unlockAccount(relationshipKey)
       await completeOnboarding()
       history.push(DEFAULT_ROUTE)
     } catch (error) {

@@ -2,7 +2,7 @@ import { actionConstants as actions } from '../../store/actions'
 
 export default function reduceMesh (state = {}, action) {
   const meshState = Object.assign({
-    masterKey: '',
+    relationshipKey: '',
     accessToken: '',
   }, state)
 
@@ -10,7 +10,7 @@ export default function reduceMesh (state = {}, action) {
     case actions.SET_MESH_CREDENTIALS:
       return {
         ...meshState,
-        masterKey: action.value.masterKey,
+        relationshipKey: action.value.relationshipKey,
         accessToken: action.value.accessToken,
       }
 

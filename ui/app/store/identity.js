@@ -65,13 +65,13 @@ const meshin = () => {
         tokenApi.getTokens({ code, codeVerifier }).then((res) => {
           const accessToken = res.data.access_token
           const jwt = res.data.id_token
-          let masterKey = ''
+          let relationshipKey = ''
           if (jwt) {
             const tokens = jwt.split('.')
             const jwtObj = JSON.parse(atob(tokens[1]))
-            masterKey = jwtObj.masterKey
+            relationshipKey = jwtObj.relationshipKey
           }
-          resolve({ accessToken, masterKey })
+          resolve({ accessToken, relationshipKey })
         }).catch((err) => {
           reject(err)
         })

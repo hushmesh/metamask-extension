@@ -2587,23 +2587,23 @@ export function getSeedFromMesh () {
 
       storageApi.fetchData(token, 'metamask').then(async (res) => {
         const encrypted = res.data.seed
-        const masterKey = state.mesh.masterKey
-        const seed = crypto.decrypt(encrypted, masterKey)
+        const relationshipKey = state.mesh.relationshipKey
+        const seed = crypto.decrypt(encrypted, relationshipKey)
 
         if (isInitialized) {
           try {
-            await dispatch(tryUnlockMetamask(masterKey))
+            await dispatch(tryUnlockMetamask(relationshipKey))
             resolve(DEFAULT_ROUTE)
           } catch (err) {
             if (err) {
-              await dispatch(createNewVaultAndRestore(masterKey, seed))
+              await dispatch(createNewVaultAndRestore(relationshipKey, seed))
               await dispatch(setCompletedOnboarding())
               resolve(DEFAULT_ROUTE)
             }
           }
         } else {
           try {
-            await dispatch(createNewVaultAndRestore(masterKey, seed))
+            await dispatch(createNewVaultAndRestore(relationshipKey, seed))
             await dispatch(setCompletedOnboarding())
             resolve(DEFAULT_ROUTE)
           } catch (error) {
@@ -2625,9 +2625,9 @@ export function storeSeedToMesh (seed) {
     return new Promise((resolve, reject) => {
       const state = getState()
       const token = state.mesh.accessToken
-      const masterKey = state.mesh.masterKey
+      const relationshipKey = state.mesh.relationshipKey
 
-      const encrypted = crypto.encrypt(seed, masterKey)
+      const encrypted = crypto.encrypt(seed, relationshipKey)
       const payload = {
         seed: encrypted,
       }
