@@ -1,12 +1,11 @@
-import encUTF8 from 'crypto-js/enc-utf8'
-import AES from 'crypto-js/aes'
+import CryptoJS from 'crypto-js'
 
 const encrypt = (value, secret) => {
-  return AES.encrypt(value, secret).toString()
+  return CryptoJS.AES.encrypt(value, secret).toString()
 }
 
 const decrypt = (value, secret) => {
-  return AES.decrypt(value, secret).toString(encUTF8)
+  return CryptoJS.AES.decrypt(value, secret).toString(CryptoJS.enc.Utf8)
 }
 
 export default {

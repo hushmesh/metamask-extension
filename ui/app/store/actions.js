@@ -14,10 +14,12 @@ import { hasUnconfirmedTransactions } from '../helpers/utils/confirm-tx.util'
 import { setCustomGasLimit } from '../ducks/gas/gas.duck'
 import txHelper from '../../lib/tx-helper'
 import storageApi from '../mesh-api/storage'
-import crypto from '../mesh-api/crypto'
+import cells from '../mesh-api/cells'
 import meshoutApi from '../mesh-api/meshout'
 import { INITIALIZE_CREATE_SEED_ROUTE_MESH, INITIALIZE_MESH_WRONG_PASSWORD, DEFAULT_ROUTE } from '../helpers/constants/routes'
 import identityApi from './identity'
+
+const METAMASK_CELL_NAME = 'metamask'
 
 export const actionConstants = {
   GO_HOME: 'GO_HOME',
@@ -2585,10 +2587,13 @@ export function getSeedFromMesh () {
       const token = state.mesh.accessToken
       const isInitialized = state.metamask.isInitialized
 
-      storageApi.fetchData(token, 'metamask').then(async (res) => {
+      const relationshipKey = state.mesh.relationshipKey
+      const key = cells.createEncKey(METAMASK_CELL_NAME, relationshipKey)
+      const cellNum = cells.createCellNum(key, METAMASK_CELL_NAME)
+
+      storageApi.fetchData(token, cellNum).then(async (res) => {
         const encrypted = res.data.seed
-        const relationshipKey = state.mesh.relationshipKey
-        const seed = crypto.decrypt(encrypted, relationshipKey)
+        const seed = cells.decCellContent(relationshipKey, encrypted)
 
         if (isInitialized) {
           try {
@@ -2627,12 +2632,15 @@ export function storeSeedToMesh (seed) {
       const token = state.mesh.accessToken
       const relationshipKey = state.mesh.relationshipKey
 
-      const encrypted = crypto.encrypt(seed, relationshipKey)
+      const key = cells.createEncKey(METAMASK_CELL_NAME, relationshipKey)
+      const cellNum = cells.createCellNum(key, METAMASK_CELL_NAME)
+      const encrypted = cells.encCellContent(relationshipKey, seed)
+
       const payload = {
         seed: encrypted,
       }
 
-      storageApi.storeData(token, 'metamask', payload).then((res) => {
+      storageApi.storeData(token, cellNum, payload).then((res) => {
         resolve(res)
       }).catch((err) => {
         reject(err)
