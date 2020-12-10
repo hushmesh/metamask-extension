@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://api.hshm.sh/v0/getToken'
+const BASE_URL = 'https://api.mesh.in/v0/getToken'
 const CLIENT_ID = 'XE6PJ0DhUkLXqYYnENunqdswpTw4UDGD'
 const REDIRECT_URI = window.location.origin
 

@@ -20,7 +20,7 @@ const generateChallengeData = () => {
 }
 
 const getAuthUrl = (options) => {
-  const BASE_URL = 'https://api.hshm.sh/v0/init'
+  const BASE_URL = 'https://api.mesh.in/v0/init'
   const { responseType, clientId, redirectUri } = options
   const url = `${BASE_URL}?&response_type=${responseType}&client_id=${clientId}&redirect_uri=` + encodeURIComponent(redirectUri)
   return url

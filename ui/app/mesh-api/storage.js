@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://api.hshm.sh/v0/storage'
+const BASE_URL = 'https://api.mesh.in/v0/storage'
 
 const setHeaders = (accessToken) => {
   const axiosConfig = { headers: {} }
